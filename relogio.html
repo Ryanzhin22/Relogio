@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio</title>
+    <style>
+        body{
+            background-color: rgb(36, 33, 33);
+            text-align: center;
+            margin-top: 40vh;
+            color:rgb(255, 255, 255)
+        }
+        #relogio{
+            font-size: 20px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 10px; 
+            padding: 4px 50px;
+        }
+        #relogio:hover{
+            transition: 0.4s;
+            background-color: #fff;
+            color: rgb(36, 33, 33);
+        }
+    </style>
+</head>
+<body onload="relogio()">
+    <h1 id="boaAlguma">...</h1>
+    <label id="relogio" onclick="diaSem()">.</label>
+
+    <script>
+        var saudar = document.getElementById('boaAlguma')
+        var agora = new Date()
+        var hora = agora.getHours();
+
+        if (hora <= 12){
+            saudar.innerHTML = 'Bom dia!'
+        } else if (hora <= 18){
+            saudar.innerHTML = 'Boa Tarde!'
+        } else{
+            saudar.innerHTML= 'Boa Noite!'
+        }
+
+        function diaSem(){
+            var agora = new Date();
+            var dia = agora.getDay();
+
+            switch(dia){
+                case 0:
+                    dia = 'Domingo'
+                    break
+                case 1:
+                    dia = 'Segunda-feira'
+                    break
+                case 2:
+                    dia = 'Terça-feira'
+                    break
+                case 3:
+                    dia = 'Quarta-feira'
+                    break
+                case 4:
+                    dia = 'Quinta-feira'
+                    break
+                case 5:
+                    dia = 'Sexta-feira'
+                    break
+                case 6:
+                    dia = 'Sábado'
+                    break
+                default:
+                    dia = 'Erro'
+                    break
+            }
+
+            document.getElementById('relogio').innerHTML = dia
+        }
+
+        function relogio(){
+            var agora = new Date()
+            var hora = agora.getHours();
+            var min = agora.getMinutes();
+            var sec = agora.getSeconds();
+
+            if(hora < 10){
+                hora = '0'+hora
+            } else if (min < 10){
+                min = '0'+min
+            } else if (sec < 10){
+                sec = '0'+sec
+            }
+            document.getElementById('relogio').innerHTML = hora+':'+min+':'+sec
+        }
+    setInterval(relogio, 1000)
+    </script>
+</body>
+</html>
